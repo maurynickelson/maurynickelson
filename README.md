@@ -1,6 +1,6 @@
 # <a href="https://www.linkedin.com/in/maury-nickelson/">Maury Nickelson</a>'s IT and Cybersecurity Project Portfolio 🔐
 
-I'm passionate about cybersecurity and love tackling complex challenges through hands-on projects, aiming to improve my skills one project at a time :)
+I'm passionate about cybersecurity and love tackling complex challenges through hands-on projects, aiming to improve my skills one project at a time :) Actively building hands-on security projects. More labs and documentation in progress.
 
 
 ## ⚠️ Vulnerability Management Projects
