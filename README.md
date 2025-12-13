@@ -10,7 +10,7 @@ More projects and labs are actively in progress!
 - **[Vulnerability Management Program Implementation](https://github.com/maurynickelson/Vulnerability-management-program)**  
   End-to-end documentation of a fully built vulnerability management program, including processes, KPIs, tools, and reporting.
 
-- **Programmatic Vulnerability Remediations (PowerShell and Bash)**  
+- **Programmatic Vulnerability Remediations (PowerShell and Bash) IN PROGRESS**  
   Automating the remediation of common findings using scripts and configuration hardening.
 
 ---
@@ -20,7 +20,7 @@ More projects and labs are actively in progress!
 - **[Threat Hunting Scenario: Exposed VM Accidentally Made Public](https://github.com/maurynickelson/threat-hunting-exposed-vm)**  
   Full threat-hunting investigation using Defender XDR, Azure, and KQL. Includes PREP → COLLECTION → ANALYSIS → INVESTIGATION → RESPONSE → LESSONS LEARNED, with visuals, queries, and documentation.
 
-- **[Threat Hunting Scenario: Tor Browser Usage Detection](https://github.com/maurynickelson/threat-hunting-tor-activity)**  
+- **[Threat Hunting Scenario: Tor Browser Usage Detection]) IN PROGRESS**  
   Detection engineering and behavioral hunting scenario focusing on anonymization tools and risk identification.
 
 ---
