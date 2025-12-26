@@ -20,7 +20,7 @@ More projects and labs are actively in progress!
 - **[Threat Hunting Scenario: Exposed VM Accidentally Made Public](https://github.com/maurynickelson/threat-hunting-exposed-vm)**  
   Full threat-hunting investigation using Defender XDR, Azure, and KQL. Includes PREP → COLLECTION → ANALYSIS → INVESTIGATION → RESPONSE → LESSONS LEARNED, with visuals, queries, and documentation.
 
-  - **[Threat Hunting Scenario:Internal Network Port Scanning Detection]( https://github.com/maurynickelson/internal-port-scanning-mde-threat-hunt)**  
+ - **[Threat Hunting Scenario:Internal Network Port Scanning Detection]( https://github.com/maurynickelson/internal-port-scanning-mde-threat-hunt)**  
   Full threat-hunting investigation using Defender XDR, Azure, and KQL. Investigated internal network performance degradation, detected unathorized internal port scanning via PowerShell, correlated network and process activity using MDE and KQL. Includes PREP → COLLECTION → ANALYSIS → INVESTIGATION → RESPONSE → LESSONS LEARNED, with visuals, queries, and documentation.
 
 - **[Threat Hunting Scenario: Tor Browser Usage Detection]) IN PROGRESS**  
