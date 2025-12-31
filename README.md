@@ -23,11 +23,15 @@ More projects and labs are actively in progress!
  - **[Threat Hunting Scenario:Internal Network Port Scanning Detection]( https://github.com/maurynickelson/internal-port-scanning-mde-threat-hunt)**  
   Full threat-hunting investigation using Defender XDR, Azure, and KQL. Investigated internal network performance degradation, detected unathorized internal port scanning via PowerShell, correlated network and process activity using MDE and KQL. Includes PREP → COLLECTION → ANALYSIS → INVESTIGATION → RESPONSE → LESSONS LEARNED, with visuals, queries, and documentation.
 
+- [Insider Threat Investigation – Data Staging & Suspected Exfiltration]( https://github.com/maurynickelson/insider-threat-data-exfiltration-hunt)**
+  Tools: Microsoft Defender for Endpoint, KQL  
+Conducted proactive threat hunt to investigate suspected insider data exfiltration following employee behavorial risk indicators. Correlated process, file, and network telemetry using timestamp-based analysis.Identified unauthorized PowerShell scripting that silently installed archive utilities and staged sensitive data locally. Assessed outbound network traffic and confirmed no successful data exfiltration. Documented findings using NIST-aligned incident response methodology and MITRE ATT&CK mapping.
+
+
 - **[Threat Hunting Scenario: Tor Browser Usage Detection]) IN PROGRESS**  
   Detection engineering and behavioral hunting scenario focusing on anonymization tools and risk identification.
 
   
-
 ---
 
 ## 🤳 Connect With Me
