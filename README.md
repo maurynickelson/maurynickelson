@@ -1,6 +1,6 @@
 # <a href="https://www.linkedin.com/in/maury-nickelson/">Maury Nickelson</a>'s IT & Cybersecurity Project Portfolio 🔐
 
-I’m passionate about cybersecurity and constantly improving my skills through hands-on labs, real investigation workflows, and security automation. I enjoy breaking down complex problems, building repeatable processes, and documenting my findings like a real SOC analyst.  
+I’m passionate about cybersecurity and constantly improving my skills through hands-on labs, real investigation workflows, and security automation. I enjoy breaking down complex problems, building repeatable processes, and documenting my findings.
 More projects and labs are actively in progress!
 
 ---
