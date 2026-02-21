@@ -107,6 +107,12 @@ Authenticated account:
 
 A failed attempt immediately preceded successful authentication, suggesting credential validation prior to access.
 
+### Evidence – RDP Authentication from Public IP
+
+![RDP Initial Access](./screenshots/rdp-initial-access-public-ip.png)
+
+![Compromised User Account](./screenshots/compromised-user-kenji-sato.png)
+
 **MITRE:** T1021.001 – Remote Services (RDP)
 
 ---
@@ -138,7 +144,15 @@ Subsequent registry modifications revealed:
 - File extension exclusions added to Windows Defender
 - Folder path exclusions added
 - Directory attributes modified to hide contents
+### Evidence – Windows Defender Exclusions & Staging Directory
 
+![Malware Staging Directory](./screenshots/malware-staging-directory-windowscache.png)
+
+![Defender Extension Exclusions](./screenshots/defender-extension-exclusions.png)
+
+![Defender Path Exclusions](./screenshots/defender-path-exclusions.png)
+
+![Certutil Download Activity](./screenshots/certutil-download-activity.png)
 These actions impaired endpoint detection prior to tool execution.
 
 **MITRE:**
@@ -209,6 +223,11 @@ sekurlsa::logonpasswords
 This module targets LSASS memory to extract authentication material.
 
 Potential exposure includes NTLM hashes, Kerberos tickets, and cached credentials.
+### Evidence – Credential Dump Execution
+
+![Credential Dump Tool](./screenshots/credential-dump-tool-mm-exe.png)
+
+![Mimikatz Module Execution](./screenshots/mimikatz-sekurlsa-logonpasswords.png)
 
 **MITRE:** T1003.001 – OS Credential Dumping: LSASS Memory
 
@@ -228,6 +247,11 @@ Destination Port:
 ```
 
 Connections were initiated by `powershell.exe`, indicating encrypted C2 communications over standard web traffic.
+### Evidence – Command & Control Communication
+
+![C2 Server Communication](./screenshots/c2-server-78-141-196-6.png)
+
+![C2 Communication Port](./screenshots/c2-communication-port-443.png)
 
 **MITRE:** T1071.001 – Web Protocols
 
@@ -242,6 +266,11 @@ export-data.zip
 ```
 
 Outbound connections to Discord infrastructure occurred shortly after archive creation, confirming data exfiltration over HTTPS.
+### Evidence – Data Staging & Exfiltration
+
+![Data Archive Created](./screenshots/data-archive-export-data-zip.png)
+
+![Discord Exfiltration](./screenshots/discord-exfiltration-activity.png)
 
 **MITRE:**
 - T1560 – Archive Collected Data  
@@ -264,6 +293,9 @@ Security
 ```
 
 Clearing Security logs first demonstrates awareness of forensic logging importance.
+### Evidence – Event Log Clearing
+
+![Security Log Cleared](./screenshots/event-log-clearing-security.png)
 
 **MITRE:** T1070.001 – Indicator Removal on Host
 
@@ -278,6 +310,11 @@ mstsc.exe /v:10.1.0.188
 ```
 
 Indicates attempted RDP pivot to internal host **10.1.0.188** following credential dumping.
+### Evidence – Internal Pivot Attempt
+
+![Internal Target IP](./screenshots/lateral-movement-target-10-1-0-188.png)
+
+![RDP Client Execution](./screenshots/lateral-movement-tool-mstsc.png)
 
 **MITRE:** T1021.001 – Remote Services
 
