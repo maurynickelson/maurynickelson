@@ -366,9 +366,6 @@ DeviceProcessEvents
 # Appendix B – Screenshots
 
 
-```
-# Appendix B – Screenshots
-
 ## Initial Access – RDP Authentication
 ![RDP Initial Access](./screenshots/rdp-initial-access-public-ip.png)
 ![Compromised User](./screenshots/compromised-user-kenji-sato.png)
@@ -408,6 +405,6 @@ DeviceProcessEvents
 ## Lateral Movement
 ![Internal Target IP](./screenshots/lateral-movement-target-10-1-0-188.png)
 ![RDP Client Execution](./screenshots/lateral-movement-tool-mstsc.png)
-```
+
 
 ---
