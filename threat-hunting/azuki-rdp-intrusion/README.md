@@ -365,14 +365,49 @@ DeviceProcessEvents
 
 # Appendix B – Screenshots
 
-*(Place screenshots in a folder named `screenshots/` and reference them below.)*
-
-Example:
 
 ```
-![RDP Logon Evidence](./screenshots/rdp-logon.png)
-![C2 Traffic Evidence](./screenshots/c2-traffic.png)
-![Scheduled Task Creation](./screenshots/schtasks.png)
+# Appendix B – Screenshots
+
+## Initial Access – RDP Authentication
+![RDP Initial Access](./screenshots/rdp-initial-access-public-ip.png)
+![Compromised User](./screenshots/compromised-user-kenji-sato.png)
+
+## Discovery – Network Recon
+![ARP Recon](./screenshots/network-recon-arp-command.png)
+
+## Defense Evasion
+![Malware Staging Directory](./screenshots/malware-staging-directory-windowscache.png)
+![Defender Extension Exclusions](./screenshots/defender-extension-exclusions.png)
+![Defender Path Exclusions](./screenshots/defender-path-exclusions.png)
+![Certutil Download Activity](./screenshots/certutil-download-activity.png)
+
+## Persistence
+![Scheduled Task Creation](./screenshots/scheduled-task-windows-update-check.png)
+![Scheduled Task Target](./screenshots/scheduled-task-target-svchost.png)
+![Backdoor Admin Account](./screenshots/persistence-backdoor-account-support.png)
+
+## Credential Access
+![Credential Dump Tool](./screenshots/credential-dump-tool-mm-exe.png)
+![Mimikatz Module Execution](./screenshots/mimikatz-sekurlsa-logonpasswords.png)
+
+## Command & Control
+![C2 Server Communication](./screenshots/c2-server-78-141-196-6.png)
+![C2 Communication Port](./screenshots/c2-communication-port-443.png)
+
+## Collection & Exfiltration
+![Data Archive Created](./screenshots/data-archive-export-data-zip.png)
+![Discord Exfiltration](./screenshots/discord-exfiltration-activity.png)
+
+## Anti-Forensics
+![Security Log Cleared](./screenshots/event-log-clearing-security.png)
+
+## Execution
+![Malicious Script Execution](./screenshots/malicious-script-wupdate-ps1.png)
+
+## Lateral Movement
+![Internal Target IP](./screenshots/lateral-movement-target-10-1-0-188.png)
+![RDP Client Execution](./screenshots/lateral-movement-tool-mstsc.png)
 ```
 
 ---
