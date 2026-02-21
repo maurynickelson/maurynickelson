@@ -341,15 +341,97 @@ Credential dumping significantly increases potential blast radius beyond a singl
 
 # 9. Skills Demonstrated
 
-- Advanced KQL threat hunting in Microsoft Defender
-- Cross-table telemetry correlation (Logon, Process, Network, Registry, File)
-- MITRE ATT&CK mapping
-- Timeline reconstruction
-- Credential abuse analysis
-- C2 detection via behavioral correlation
-- Data exfiltration detection
-- Persistence mechanism discovery
-- Business impact assessment
+## Threat Hunting & Investigation
+
+- Advanced KQL threat hunting within Microsoft Defender for Endpoint
+- Cross-table telemetry correlation across:
+  - `DeviceLogonEvents`
+  - `DeviceProcessEvents`
+  - `DeviceNetworkEvents`
+  - `DeviceRegistryEvents`
+  - `DeviceFileEvents`
+- Timeline reconstruction of multi-stage intrusion activity
+- Hypothesis-driven hunting methodology (lifecycle-based investigation)
+- Root cause analysis of initial access vector
+
+---
+
+## Identity & Access Analysis
+
+- Detection of unauthorized RDP authentication from public IP addresses
+- Analysis of failed-to-successful logon patterns indicative of credential abuse
+- Privileged account compromise assessment
+- Detection of local administrator account creation for persistence
+
+---
+
+## Endpoint Detection & Defense Evasion Analysis
+
+- Identification of Windows Defender exclusion modifications via registry telemetry
+- Detection of hidden staging directories using process attribute changes
+- Behavioral detection of living-off-the-land binaries (LOLBins) including:
+  - `certutil.exe`
+  - `powershell.exe`
+- Detection of event log clearing via `wevtutil`
+- Analysis of attacker anti-forensic tradecraft
+
+---
+
+## Credential Access & Post-Exploitation Analysis
+
+- Detection of LSASS memory access using:
+  - `mm.exe`
+  - `sekurlsa::logonpasswords`
+- Understanding of NTLM hash, Kerberos ticket, and cached credential exposure risk
+- Blast radius assessment following credential dumping
+
+---
+
+## Command & Control & Network Analysis
+
+- Identification of anomalous outbound HTTPS traffic
+- Correlation of repeated connections to external infrastructure
+- Isolation of C2 server (78.141.196.6) and associated port (443)
+- Analysis of process-to-network relationships (`powershell.exe` initiating C2 traffic)
+
+---
+
+## Data Staging & Exfiltration Detection
+
+- Detection of compressed archive creation (`export-data.zip`)
+- Identification of exfiltration over trusted web services (Discord)
+- Analysis of encrypted HTTPS traffic patterns associated with data theft
+
+---
+
+## Persistence Mechanism Identification
+
+- Detection of malicious scheduled task creation
+- Analysis of execution targets within staged directories
+- Identification of redundant persistence mechanisms
+
+---
+
+## MITRE ATT&CK Mapping & Threat Modeling
+
+- Mapping of observed behavior to ATT&CK techniques including:
+  - T1021.001 – Remote Services (RDP)
+  - T1562.001 – Impair Defenses
+  - T1105 – Ingress Tool Transfer
+  - T1003.001 – LSASS Credential Dumping
+  - T1071.001 – Web Protocol C2
+  - T1567.002 – Exfiltration Over Web Service
+- Structured lifecycle analysis across Initial Access → Impact
+
+---
+
+## Security Operations Capabilities
+
+- Real-world SOC-style incident documentation
+- Artifact validation and evidence preservation
+- Indicator of Compromise (IOC) development
+- Business impact assessment tied to technical findings
+- Development of actionable defensive recommendations
 
 ---
 
