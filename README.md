@@ -1,7 +1,29 @@
 # <a href="https://www.linkedin.com/in/maury-nickelson/">Maury Nickelson</a>'s IT & Cybersecurity Project Portfolio 🔐
 
-I’m passionate about cybersecurity and constantly improving my skills through hands-on labs, real investigation workflows, and security automation. I enjoy breaking down complex problems, building repeatable processes, and documenting my findings.
-More projects and labs are actively in progress!
+Maury Nickelson
+Cybersecurity Operations & Threat Detection Portfolio
+
+Welcome to my cybersecurity project portfolio. This repository showcases hands-on threat hunting investigations, vulnerability management workflows, detection engineering, and endpoint hardening projects built in lab environments that simulate real-world SOC operations.
+
+My focus is on structured investigation methodology, clear documentation, and defensible remediation strategies aligned to industry frameworks.
+
+Core Focus Areas
+
+Threat Hunting & Detection Engineering
+
+Incident Response & Timeline Reconstruction
+
+Endpoint Telemetry Analysis (Microsoft Defender for Endpoint)
+
+KQL Query Development
+
+Vulnerability Management & STIG Remediation
+
+Azure Lab Environments & Security Hardening
+
+MITRE ATT&CK Mapping
+
+NIST 800-61 Incident Response Alignment
 
 ---
 
