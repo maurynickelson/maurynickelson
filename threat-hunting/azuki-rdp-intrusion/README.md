@@ -7,11 +7,27 @@
 
 ---
 ## Table of Contents
-- [Executive Summary](#executive-summary)
-- [Detailed Findings](#detailed-findings)
-- [Indicators of Compromise](#indicators-of-compromise-iocs)
-- [Timeline](#attack-timeline-condensed)
-- [Appendix A – KQL Queries](#appendix-a--investigative-kql-queries-used-to-derive-findings)
+
+- [1. Executive Summary](#1-executive-summary)
+- [2. Scope of Investigation](#2-scope-of-investigation)
+- [3. Methodology](#3-methodology)
+- [4. Detailed Findings](#4-detailed-findings)
+  - [4.1 Initial Access – RDP Authentication](#41-initial-access--rdp-authentication)
+  - [4.2 Discovery Activity](#42-discovery-activity)
+  - [4.3 Defense Evasion & Staging](#43-defense-evasion--staging)
+  - [4.4 Tool Ingress](#44-tool-ingress)
+  - [4.5 Persistence Mechanisms](#45-persistence-mechanisms)
+  - [4.6 Credential Access](#46-credential-access)
+  - [4.7 Command & Control](#47-command--control)
+  - [4.8 Collection & Exfiltration](#48-collection--exfiltration)
+  - [4.9 Anti-Forensics](#49-anti-forensics)
+  - [4.10 Lateral Movement](#410-lateral-movement)
+- [5. Indicators of Compromise (IOCs)](#5-indicators-of-compromise-iocs)
+- [6. Attack Timeline (Condensed)](#6-attack-timeline-condensed)
+- [7. Impact Assessment](#7-impact-assessment)
+- [8. Recommendations](#8-recommendations)
+- [9. Skills Demonstrated](#9-skills-demonstrated)
+- [Appendix A – Investigative KQL Queries Used to Derive Findings](#appendix-a--investigative-kql-queries-used-to-derive-findings)
 - [Appendix B – Screenshots](#appendix-b--screenshots)
 ---
 
