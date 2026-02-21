@@ -329,37 +329,346 @@ Credential dumping significantly increases potential blast radius beyond a singl
 
 ---
 
-# Appendix A – Sample KQL Queries
+# Appendix A – Investigative KQL Queries Used to Derive Findings
 
-### RDP Logon Analysis
+The following queries represent the exact investigative pivots used to identify each stage of the attack lifecycle. These queries reflect the methodology used during analysis rather than optimized detection engineering logic.
+
+---
+
+## 1. Initial Access – External RDP Source
+
+To identify remote interactive logons to the compromised workstation during the incident window:
+
+```kql
+DeviceLogonEvents
+| where LogonType contains "Remote"
+| where DeviceName contains "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+```
+
+After identifying the compromised account, the query was refined to extract associated IP addresses:
 
 ```kql
 DeviceLogonEvents
 | where DeviceName == "azuki-sl"
-| where LogonType contains "Remote"
+| where AccountName contains "kenji"
 | where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-| project Timestamp, AccountName, RemoteIP, ActionType
+| project Timestamp, AccountName, RemoteIP, LogonType, ActionType
 | sort by Timestamp asc
 ```
 
-### C2 Traffic Identification
+This revealed public IP **88.97.178.12** associated with successful RDP authentication under account **kenji.sato**.
+
+---
+
+## 2. Discovery – Network Reconnaissance
+
+To identify network enumeration activity following initial access:
 
 ```kql
-DeviceNetworkEvents
-| where DeviceName == "azuki-sl"
-| where RemoteIP == "78.141.196.6"
-| project Timestamp, RemoteIP, RemotePort, InitiatingProcessFileName
+DeviceProcessEvents
+| where DeviceName contains "azuki-sl"
+| where ProcessCommandLine contains "arp"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-30))
+| project Timestamp, FileName, ProcessCommandLine
 | order by Timestamp asc
 ```
 
-### Scheduled Task Creation
+This confirmed execution of `arp -a`, indicating local network reconnaissance.
+
+---
+
+## 3. Defense Evasion – Malware Staging Directory
+
+To detect folder attribute modifications consistent with staging concealment:
 
 ```kql
 DeviceProcessEvents
 | where DeviceName == "azuki-sl"
-| where ProcessCommandLine contains "schtasks"
-| project Timestamp, ProcessCommandLine
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where ProcessCommandLine contains "attrib"
 ```
+
+This led to identification of staging directory:
+
+`C:\ProgramData\WindowsCache`
+
+---
+
+## 4. Defense Evasion – File Extension Exclusions
+
+To detect Windows Defender exclusion modifications:
+
+```kql
+DeviceRegistryEvents
+| where RegistryKey contains @"Windows Defender\Exclusions\Extensions"
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+```
+
+This revealed three excluded file extensions added during the attack timeline.
+
+---
+
+## 5. Defense Evasion – Temporary Folder Exclusion
+
+To identify excluded folder paths:
+
+```kql
+DeviceRegistryEvents
+| where RegistryKey contains @"Windows Defender\Exclusions\Paths"
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| project RegistryValueName
+```
+
+This identified exclusion of:
+
+`C:\Users\KENJI~1.SAT\AppData\Local\Temp`
+
+---
+
+## 6. Living-Off-the-Land Download Utility Abuse
+
+To identify abused native download utilities:
+
+```kql
+let download_lolbins = dynamic([
+    "certutil.exe",
+    "bitsadmin.exe",
+    "powershell.exe",
+    "curl.exe",
+    "wget.exe",
+    "mshta.exe"
+]);
+
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where FileName in~ (download_lolbins)
+| where ProcessCommandLine has_any ("http","https","ftp")
+| project Timestamp, DeviceName, FileName, ProcessCommandLine, InitiatingProcessAccountName
+| order by Timestamp asc
+```
+
+This confirmed use of **certutil.exe** with the `-urlcache` parameter for tool download.
+
+---
+
+## 7. Persistence – Scheduled Task Creation
+
+To identify scheduled task creation:
+
+```kql
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where ProcessCommandLine contains "schtasks"
+| project ProcessCommandLine
+```
+
+This revealed creation of task:
+
+**Windows Update Check**
+
+---
+
+## 8. Persistence – Scheduled Task Execution Target
+
+Review of the `/tr` parameter within the schtasks command revealed execution target:
+
+`C:\ProgramData\WindowsCache\svchost.exe`
+
+---
+
+## 9. Command & Control – C2 Server Identification
+
+To identify frequently contacted public IP addresses:
+
+```kql
+DeviceNetworkEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where RemoteIPType == "Public"
+| summarize Connections = count() by RemoteIP
+| order by Connections desc
+```
+
+After isolating candidate IPs, further correlation was performed:
+
+```kql
+DeviceNetworkEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where RemoteIPType == "Public"
+| where ActionType == "ConnectionSuccess"
+| where RemoteIP in (
+    "168.63.129.16",
+    "198.235.24.12",
+    "103.215.15.27",
+    "78.141.196.6",
+    "20.189.173.28"
+)
+| project Timestamp,
+          InitiatingProcessFileName,
+          InitiatingProcessCommandLine,
+          RemoteIP,
+          RemotePort,
+          RemoteUrl
+| order by Timestamp asc
+```
+
+Repeated connections to **78.141.196.6** initiated by **powershell.exe** confirmed C2 infrastructure.
+
+---
+
+## 10. C2 Communication Port
+
+```kql
+DeviceNetworkEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where RemoteIP == "78.141.196.6"
+| project Timestamp, LocalIP, RemoteIP, RemotePort, Protocol, ActionType
+| order by Timestamp asc
+```
+
+This confirmed communication over **port 443**.
+
+---
+
+## 11. Credential Dump Tool Identification
+
+```kql
+DeviceFileEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where FolderPath contains "Windowscache"
+```
+
+Identified executable:
+
+**mm.exe**
+
+---
+
+## 12. Credential Dump Module
+
+```kql
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where ProcessCommandLine contains "sekurlsa::logonpasswords"
+| project ProcessCommandLine
+```
+
+Confirmed module:
+
+**sekurlsa::logonpasswords**
+
+---
+
+## 13. Data Staging Archive
+
+```kql
+DeviceFileEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where FileName endswith ".zip"
+| project Timestamp, FileName, FolderPath
+| order by Timestamp desc
+```
+
+Identified archive:
+
+**export-data.zip**
+
+---
+
+## 14. Exfiltration Channel – Discord
+
+```kql
+DeviceNetworkEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where InitiatingProcessCommandLine contains "WindowsCache"
+```
+
+Confirmed use of **Discord** for exfiltration.
+
+---
+
+## 15. Anti-Forensics – Log Clearing
+
+```kql
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where ProcessCommandLine contains "wevtutil"
+| project TimeGenerated, ProcessCommandLine
+| sort by TimeGenerated asc
+```
+
+First log cleared:
+
+**Security**
+
+---
+
+## 16. Backdoor Account Creation
+
+```kql
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where ProcessCommandLine contains "/add"
+| sort by TimeGenerated asc
+```
+
+Created account:
+
+**support**
+
+---
+
+## 17. Malicious Script Execution
+
+```kql
+DeviceFileEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where FileName endswith ".ps1" or FileName endswith ".bat"
+| project Timestamp, DeviceName, FileName, ActionType, InitiatingProcessFileName, FolderPath
+| order by Timestamp desc
+```
+
+Identified script:
+
+**wupdate.ps1**
+
+---
+
+## 18. Lateral Movement – Secondary Target
+
+```kql
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
+| where ProcessCommandLine contains "mstsc"
+| project ProcessCommandLine
+```
+
+Confirmed pivot to:
+
+**10.1.0.188**
+
+---
+
+## 19. Lateral Movement – Remote Access Tool
+
+Confirmed tool used:
+
+**mstsc.exe**
 
 ---
 
