@@ -49,6 +49,8 @@ NIST 800-61 Incident Response Alignment
 Tools: Microsoft Defender for Endpoint, KQL  
 Conducted proactive threat hunt to investigate suspected insider data exfiltration following employee behavorial risk indicators. Correlated process, file, and network telemetry using timestamp-based analysis.Identified unauthorized PowerShell scripting that silently installed archive utilities and staged sensitive data locally. Assessed outbound network traffic and confirmed no successful data exfiltration. Documented findings using NIST-aligned incident response methodology and MITRE ATT&CK mapping.
 
+- **[Threat Hunting Scenario: RDP Intrusion – Credential Dumping & Data Exfiltration](https://github.com/maurynickelson/maurynickelson/tree/main/threat-hunting/azuki-rdp-intrusion)**  
+  Conducted structured threat hunt using Microsoft Defender for Endpoint (Advanced Hunting / KQL) to reconstruct a hands-on-keyboard intrusion involving external RDP abuse, LSASS credential dumping, persistence creation, encrypted C2 communications, and cloud-based data exfiltration. Performed cross-table telemetry correlation (Logon, Process, Registry, Network, File) to produce a complete attack timeline with MITRE ATT&CK alignment and actionable detection recommendations.
 
 - **[Threat Hunting Scenario: Tor Browser Usage Detection]) IN PROGRESS**  
   Detection engineering and behavioral hunting scenario focusing on anonymization tools and risk identification.
