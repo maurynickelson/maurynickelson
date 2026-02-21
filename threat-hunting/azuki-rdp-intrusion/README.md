@@ -6,6 +6,14 @@
 **Report Author:** Maury Nickelson  
 
 ---
+## Table of Contents
+- [Executive Summary](#executive-summary)
+- [Detailed Findings](#detailed-findings)
+- [Indicators of Compromise](#indicators-of-compromise-iocs)
+- [Timeline](#attack-timeline-condensed)
+- [Appendix A – KQL Queries](#appendix-a--investigative-kql-queries-used-to-derive-findings)
+- [Appendix B – Screenshots](#appendix-b--screenshots)
+---
 
 # 1. Executive Summary
 
