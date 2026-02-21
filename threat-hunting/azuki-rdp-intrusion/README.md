@@ -1,5 +1,9 @@
 # Incident Report  
-## RDP Intrusion, Credential Dumping & Data Exfiltration  
+## RDP Intrusion, Credential Dumping & Data Exfiltration
+## TL;DR (Recruiter Summary)
+This investigation reconstructs a full multi-stage intrusion on a Windows administrative workstation using Microsoft Defender for Endpoint telemetry. The attacker leveraged external RDP access, defense evasion techniques, credential dumping, command-and-control over HTTPS, persistence mechanisms, and data exfiltration via Discord. 
+
+This case study demonstrates advanced KQL threat hunting, cross-telemetry correlation, MITRE ATT&CK mapping, and real-world SOC investigative methodology rather than alert triage alone.
 **Environment:** Microsoft Defender for Endpoint (Advanced Hunting)  
 **Impacted Host:** AZUKI-SL  
 **Date of Activity:** November 19, 2025  
