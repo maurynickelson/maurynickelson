@@ -52,8 +52,8 @@ Conducted proactive threat hunt to investigate suspected insider data exfiltrati
 - **[Threat Hunting Scenario: RDP Intrusion – Credential Dumping & Data Exfiltration](https://github.com/maurynickelson/maurynickelson/tree/main/threat-hunting/azuki-rdp-intrusion)**  
   Conducted structured threat hunt using Microsoft Defender for Endpoint (Advanced Hunting / KQL) to reconstruct a hands-on-keyboard intrusion involving external RDP abuse, LSASS credential dumping, persistence creation, encrypted C2 communications, and cloud-based data exfiltration. Performed cross-table telemetry correlation (Logon, Process, Registry, Network, File) to produce a complete attack timeline with MITRE ATT&CK alignment and actionable detection recommendations.
 
-- **[Threat Hunting Scenario: Tor Browser Usage Detection]) IN PROGRESS**  
-  Detection engineering and behavioral hunting scenario focusing on anonymization tools and risk identification.
+- **[Threat Hunting Scenario: Unauthorized TOR Browser Usage Detection](https://github.com/maurynickelson/unauthorized-tor-usage-threat-hunt)**  
+  Behavioral detection of unauthorized TOR browser installation and anonymized network usage using Microsoft Defender for Endpoint. Correlated file, process, and network telemetry to confirm silent installation, browser execution, and TOR connectivity. Includes full timeline reconstruction, risk assessment, and containment actions.
 
   
 ---
