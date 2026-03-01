@@ -32,7 +32,7 @@ NIST 800-61 Incident Response Alignment
 - **[Vulnerability Management Program Implementation](https://github.com/maurynickelson/Vulnerability-management-program)**  
   End-to-end documentation of a fully built vulnerability management program, including processes, KPIs, tools, and reporting.
 
-- **Programmatic Vulnerability Remediations (PowerShell and Bash) IN PROGRESS**  
+- **Windows 11 Security Hardening & Vulnerability Remediation (PowerShell and Bash) IN PROGRESS**  
   Automating the remediation of common findings using scripts and configuration hardening.
 
 ---
