@@ -1,29 +1,39 @@
-# <a href="https://www.linkedin.com/in/maury-nickelson/">Maury Nickelson</a>'s IT & Cybersecurity Project Portfolio 🔐
+# <a href="https://www.linkedin.com/in/maury-nickelson/"># Maury Nickelson — Cybersecurity Operations & Detection Engineering Portfolio 🔐
 
-Maury Nickelson
-Cybersecurity Operations & Threat Detection Portfolio
 
-Welcome to my cybersecurity project portfolio. This repository showcases hands-on threat hunting investigations, vulnerability management workflows, detection engineering, and endpoint hardening projects built in lab environments that simulate real-world SOC operations.
+Welcome to my cybersecurity project portfolio. This repository showcases hands-on threat hunting investigations, structured vulnerability remediation projects, and endpoint hardening workflows designed to replicate enterprise SOC operations.
 
-My focus is on structured investigation methodology, clear documentation, and defensible remediation strategies aligned to industry frameworks.
+Projects demonstrate cross-table telemetry correlation using Microsoft Defender for Endpoint, KQL-driven detection engineering, DISA STIG-based configuration enforcement, and defensible remediation strategies validated through re-scan workflows.
 
-Core Focus Areas
+Emphasis is placed on structured investigation methodology, true-positive validation, risk-based decision making, and alignment with industry security frameworks.
 
-Threat Hunting & Detection Engineering
+---
 
-Incident Response & Timeline Reconstruction
+## Core Focus Areas
 
-Endpoint Telemetry Analysis (Microsoft Defender for Endpoint)
+- Threat Hunting & Detection Engineering  
+- Incident Response & Timeline Reconstruction  
+- Endpoint Telemetry Analysis (Microsoft Defender for Endpoint)  
+- KQL Query Development  
+- Vulnerability Management & STIG-Based Hardening  
+- Azure Lab Environments & Cloud Security Boundary Analysis  
+- MITRE ATT&CK Mapping  
+- NIST 800-61 Incident Response Lifecycle  
+- NIST 800-53 Control Alignment  
 
-KQL Query Development
+---
 
-Vulnerability Management & STIG Remediation
+## Methodological Approach
 
-Azure Lab Environments & Security Hardening
+Each project follows a structured security lifecycle:
 
-MITRE ATT&CK Mapping
+**PREP → COLLECTION → ANALYSIS → INVESTIGATION → RESPONSE → VERIFICATION → LESSONS LEARNED**
 
-NIST 800-61 Incident Response Alignment
+For vulnerability management initiatives:
+
+**DETECTION → VALIDATION → REMEDIATION → RE-SCAN → DOCUMENTATION → NIST ALIGNMENT**
+
+This approach ensures findings are technically validated, remediation actions are defensible, and documentation aligns with enterprise security operations standards.
 
 ---
 
