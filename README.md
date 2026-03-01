@@ -33,7 +33,7 @@ NIST 800-61 Incident Response Alignment
   End-to-end documentation of a fully built vulnerability management program, including processes, KPIs, tools, and reporting.
 
 - **Windows 11 Security Hardening & Vulnerability Remediation (PowerShell and Bash) IN PROGRESS**  
-  Automating the remediation of common findings using scripts and configuration hardening.
+ Full structured remediation of DISA Windows 11 STIG controls using Tenable Vulnerability Management and PowerShell. Conducted endpoint hardening across identity, network, boot integrity, and legacy component exposure. Validated findings through manual registry, Group Policy, and PowerShell analysis to confirm true positives before remediation. Executed configuration enforcement, account lifecycle management, firewall hardening, protocol security controls, and Secure Boot validation (including Azure VM infrastructure boundary analysis). Includes DETECTION → VALIDATION → REMEDIATION → VERIFICATION → NIST 800-53 ALIGNMENT, with supporting evidence, scan reports, and technical documentation.
 
 ---
 
