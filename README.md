@@ -1,4 +1,8 @@
-<a href="https://www.linkedin.com/in/maury-nickelson/"> Maury Nickelson — Cybersecurity Operations & Detection Engineering Portfolio 🔐
+<h1>
+  <a href="https://www.linkedin.com/in/maury-nickelson/">
+    Maury Nickelson — Cybersecurity Operations & Detection Engineering Portfolio 🔐
+  </a>
+</h1>
 
 
 Welcome to my cybersecurity project portfolio. This repository showcases hands-on threat hunting investigations, structured vulnerability remediation projects, and endpoint hardening workflows designed to replicate enterprise SOC operations.
